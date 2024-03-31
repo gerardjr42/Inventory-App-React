@@ -1,6 +1,19 @@
 import arrow from '../images/arrow.png'
 import logo from '../images/logo.png'
 
+/*
+Import the link component from react-dom to disallow refreshing page:
+  -replace all <a> with <Link>
+  -replace all 'href's with 'to'
+  End Result: <Link to=""></Link>
+
+Import useMatch and useResolvedPath
+  -useMatch: match current location to a route to access it's info
+  -useResolvedPath: It helps you resolve relative paths to their actual paths within your application. This can be useful for generating links dynamically or navigating to specific routes.
+
+*/
+import { Link, useMatch, useResolvedPath } from 'react-router-dom'
+
 const SideBar = () => {
   return (
     <nav className="sidebar close">
@@ -19,17 +32,17 @@ const SideBar = () => {
         <div className="menu">
           <ul className="menu-links">
             {/* Added our CustomLinks to navigate pages*/}
-            <CustomLink href="/main">
+            <CustomLink to="/main">
               <i className='bx bx-home-alt sidebar-icons'></i>
               <span className="nav-text">Home</span>
             </CustomLink>
             
-            <CustomLink href="/form">
+            <CustomLink to="/form">
               <i className='bx bx-book-add sidebar-icons' ></i>
               <span className="nav-text">Add New Product</span>
             </CustomLink>
 
-            <CustomLink href="/table">
+            <CustomLink to="/table">
               <i className='bx bx-bar-chart-alt-2 sidebar-icons'></i>
               <span className="nav-text">Inventory Table</span>
             </CustomLink>
@@ -55,14 +68,16 @@ const SideBar = () => {
     </nav>
   )
 }
-
-function CustomLink({href, children, ...props}) {
-  const path = window.location.pathname
+//Replace all href with 'to' for Routing
+//Use resolvedPath to reference links, in this case on the to's
+function CustomLink({to, children, ...props}) {
+  const resolvedPath = useResolvedPath(to)
+  const isActive = useMatch({path: resolvedPath.pathname, end: true}) //use end:true to get exact matching
   return (
-    <li className={`${path === href ? "active" : ""}` + " nav-links"}>
-      <a href={href} {...props}>
+    <li className={`${isActive ? "active" : ""}` + " nav-links"}>
+      <Link to={to} {...props}>
         {children}
-      </a>
+      </Link>
     </li>
   )
 }

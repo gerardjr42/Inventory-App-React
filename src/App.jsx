@@ -4,26 +4,19 @@ import Form from './pages/Form'
 import Main from './pages/Main'
 import Table from './pages/Table'
 
+//After installing router and wrapping our app.jsx with BrowserRoute we have import the following
+import { Route, Routes } from 'react-router-dom'
+
 //Create variable and update variable to another component
 const App = () => {
-  // Add a switch statement for our pages
-  let component
-  switch(window.location.pathname) {
-    case "/main":
-      component = <Main/>
-      break
-    case "/form":
-      component = <Form/>
-      break
-    case "/table":
-      component = <Table/>
-      break
-  }
-
   return (
     <>
     <SideBar />
-    {component}
+      <Routes>
+        <Route path="/main" element={<Main />} />
+        <Route path="/form" element={<Form />} />
+        <Route path="/table" element={<Table />} />
+      </Routes>
     </>
   )
 }
