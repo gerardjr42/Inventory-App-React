@@ -1,6 +1,6 @@
 import SideBar from './components/Sidebar'
-import Main from './pages/Main'
 import Form from './pages/Form'
+import Main from './pages/Main'
 import Table from './pages/Table'
 //After installing router and wrapping our app.jsx with BrowserRoute we have import the following
 import { Route, Routes } from 'react-router-dom'
