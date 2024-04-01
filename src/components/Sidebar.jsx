@@ -16,6 +16,7 @@ Import useMatch and useResolvedPath
   -useResolvedPath: It helps you resolve relative paths to their actual paths within your application. This can be useful for generating links dynamically or navigating to specific routes.
 */
 import { Link, useMatch, useResolvedPath } from 'react-router-dom'
+import ToggleSwitch from './ToggleSwitch'
 
 const SideBar = () => {
   return (
@@ -51,22 +52,7 @@ const SideBar = () => {
             </CustomLink>
           </ul>
         </div>
-
-        <div className="bottom-content">
-          <ul className="menu-links">
-            <li className="mode">
-              <div className="moon-sun">
-                <i className="bx bx-moon sidebar-icons moon"></i>
-                <i className="bx bx-sun sidebar-icons sun"></i>
-              </div>
-              <span className="mode-text text">Dark Mode</span>
-
-              <div className="toggle-switch">
-                <span className="switch"></span>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <ToggleSwitch />
       </div>
     </nav>
   )
